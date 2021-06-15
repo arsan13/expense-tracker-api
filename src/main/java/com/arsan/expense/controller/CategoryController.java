@@ -18,39 +18,39 @@ import com.arsan.expense.entity.Category;
 import com.arsan.expense.service.CategoryService;
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/api")
 public class CategoryController {
 
 	@Autowired
 	CategoryService categoryService;
 		
-	@GetMapping("")
+	@GetMapping("/categories")
 	public List<Category> getCategoriesOfUser(HttpServletRequest request) {
 		int userId = (Integer) request.getAttribute("userId");
 		return categoryService.fetchCategoriesOfUser(userId);
 	}
 	
-	@GetMapping("{categoryId}")
+	@GetMapping("/categories/{categoryId}")
 	public Category getCategoryById(HttpServletRequest request, @PathVariable("categoryId") Integer categoryId) {
 		int userId = (Integer) request.getAttribute("userId");
 		return categoryService.fetchCategoryById(categoryId, userId);
 	}
 	
-	@PostMapping("")
+	@PostMapping("/categories")
 	public Category addCategory(HttpServletRequest request, @RequestBody Category category) {
 		int userId = (Integer) request.getAttribute("userId");
 		Category categoryToInsert = new Category(userId, category.getTitle(), category.getDescription());
-		return categoryService.addCategory(categoryToInsert);
+		return categoryService.saveCategory(categoryToInsert);
 	}
 	
-	@PutMapping("{categoryId}")
+	@PutMapping("/categories/{categoryId}")
 	public Category updateCategory(HttpServletRequest request, @PathVariable("categoryId") Integer categoryId, @RequestBody Category category) {
 		int userId = (Integer) request.getAttribute("userId");
 		Category categoryToUpdate = new Category(categoryId, userId, category.getTitle(), category.getDescription());
-		return categoryService.addCategory(categoryToUpdate);
+		return categoryService.saveCategory(categoryToUpdate);
 	}
 	
-	@DeleteMapping("{categoryId}")
+	@DeleteMapping("/categories/{categoryId}")
 	public String deleteCategory(HttpServletRequest request, @PathVariable("categoryId") Integer categoryId) {
 		int userId = (Integer) request.getAttribute("userId");
 		categoryService.removeCategoryById(categoryId, userId);

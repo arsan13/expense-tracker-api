@@ -12,9 +12,7 @@ public interface CategoryService {
 	
 	public Category fetchCategoryById(Integer categoryId, Integer userId) throws EtResourceNotFoundException;
 	
-	public Category addCategory(Category category) throws EtBadRequestException;
-	
-	public Category updateCategory(Category category) throws EtBadRequestException;
+	public Category saveCategory(Category category) throws EtBadRequestException;
 	
 	public void removeCategoryById(Integer categoryId, Integer userId) throws EtResourceNotFoundException;
 }

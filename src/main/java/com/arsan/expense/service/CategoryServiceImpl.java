@@ -35,16 +35,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public Category addCategory(Category category) throws EtBadRequestException {
-		try {
-			return categoryRepository.save(category);
-		} catch (Exception e) {
-			throw new EtBadRequestException("Invalid request");
-		}
-	}
-
-	@Override
-	public Category updateCategory(Category category) throws EtBadRequestException {
+	public Category saveCategory(Category category) throws EtBadRequestException {
 		try {
 			return categoryRepository.save(category);
 		} catch (Exception e) {

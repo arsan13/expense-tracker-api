@@ -15,7 +15,4 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
 	
 	public Category findByCategoryIdAndUserId(Integer categoryId, Integer userId);
 	
-	@Modifying
-	@Query("delete from Category c where c.categoryId=:categoryId and c.userId=:userId")
-	public void deleteByCategoryIdAndUserId(@Param("categoryId") Integer categoryId, @Param("userId") Integer userId);
 }
