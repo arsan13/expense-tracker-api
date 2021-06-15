@@ -11,10 +11,7 @@ import com.arsan.expense.dao.UserRepository;
 import com.arsan.expense.entity.User;
 import com.arsan.expense.exception.EtAuthException;
 
-
-
 @Service
-//@Transactional  // transactional not needed, since jpa provides it
 public class UserServiceImpl implements UserService {
 
 	@Autowired
