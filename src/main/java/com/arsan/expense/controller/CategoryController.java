@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arsan.expense.entity.Category;
+import com.arsan.expense.entity.User;
 import com.arsan.expense.service.CategoryService;
+import com.arsan.expense.service.UserService;
 
 @RestController
 @RequestMapping("/api")
@@ -24,6 +26,9 @@ public class CategoryController {
 	@Autowired
 	CategoryService categoryService;
 		
+	@Autowired
+	UserService userService;
+	
 	@GetMapping("/categories")
 	public List<Category> getCategoriesOfUser(HttpServletRequest request) {
 		int userId = (Integer) request.getAttribute("userId");
@@ -39,15 +44,18 @@ public class CategoryController {
 	@PostMapping("/categories")
 	public Category addCategory(HttpServletRequest request, @RequestBody Category category) {
 		int userId = (Integer) request.getAttribute("userId");
-		Category categoryToInsert = new Category(userId, category.getTitle(), category.getDescription());
-		return categoryService.saveCategory(categoryToInsert);
+		User user = userService.getUserById(userId);
+		category.setUser(user);
+		return categoryService.saveCategory(category);
 	}
 	
 	@PutMapping("/categories/{categoryId}")
 	public Category updateCategory(HttpServletRequest request, @PathVariable("categoryId") Integer categoryId, @RequestBody Category category) {
 		int userId = (Integer) request.getAttribute("userId");
-		Category categoryToUpdate = new Category(categoryId, userId, category.getTitle(), category.getDescription());
-		return categoryService.saveCategory(categoryToUpdate);
+		User user = userService.getUserById(userId);
+		category.setId(categoryId);
+		category.setUser(user);
+		return categoryService.saveCategory(category);
 	}
 	
 	@DeleteMapping("/categories/{categoryId}")

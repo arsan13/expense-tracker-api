@@ -9,4 +9,6 @@ public interface UserService {
 	
 	public User registerUser(User user) throws EtAuthException;
 	
+	public User getUserById(Integer id) throws EtAuthException;
+	
 }

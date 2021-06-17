@@ -1,53 +1,62 @@
 package com.arsan.expense.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer categoryId;
-	
-	@Column
-	private Integer userId;
-	
-	@Column
+	private Integer id;
 	private String title;
-	
-	@Column
 	private String description;
 	
 	@Transient
 	private Double totalExpense;
-
+	
+	@JsonIgnore
+	@JoinColumn(name = "user_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User user;
+	
 	public Category() {
 	}
 
-	public Category(Integer categoryId, Integer userId, String title, String description, Double totalExpense) {
-		this.categoryId = categoryId;
-		this.userId = userId;
+	public Category(Integer id, String title, String description, Double totalExpense, User user) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.totalExpense = totalExpense;
+		this.user = user;
+	}
+	
+	public Category(Integer id, String title, String description, Double totalExpense) {
+		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.totalExpense = totalExpense;
 	}
 	
-	public Category(Integer categoryId, Integer userId, String title, String description) {
-		this.categoryId = categoryId;
-		this.userId = userId;
+	public Category(Integer id, String title, String description, User user) {
+		this.id = id;
 		this.title = title;
 		this.description = description;
+		this.user = user;
 	}
 
-	public Category(Integer userId, String title, String description) {
-		this.userId = userId;
+	public Category(String title, String description, User user) {
 		this.title = title;
 		this.description = description;
+		this.user = user;
 	}
 	
 	public Category(String title, String description) {
@@ -55,20 +64,12 @@ public class Category {
 		this.description = description;
 	}
 
-	public Integer getCategoryId() {
-		return categoryId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
-	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -94,4 +95,13 @@ public class Category {
 	public void setTotalExpense(Double totalExpense) {
 		this.totalExpense = totalExpense;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 }

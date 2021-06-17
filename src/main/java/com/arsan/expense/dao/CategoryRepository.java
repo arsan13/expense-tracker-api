@@ -11,8 +11,8 @@ import com.arsan.expense.entity.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
-	public List<Category> findByUserId(Integer userId);
+	public List<Category> findByUserId(Integer id);
 	
-	public Category findByCategoryIdAndUserId(Integer categoryId, Integer userId);
+	public Category findByIdAndUserId(Integer categoryId, Integer userId);
 	
 }

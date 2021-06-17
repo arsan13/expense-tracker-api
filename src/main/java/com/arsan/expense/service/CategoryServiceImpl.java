@@ -28,7 +28,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public Category fetchCategoryById(Integer categoryId, Integer userId) throws EtResourceNotFoundException {
 		try {
-			return categoryRepository.findByCategoryIdAndUserId(categoryId, userId);
+			return categoryRepository.findByIdAndUserId(categoryId, userId);
 		} catch (Exception e) {
 			throw new EtResourceNotFoundException("Resource not found");
 		}
@@ -47,7 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
 	public void removeCategoryById(Integer categoryId, Integer userId)
 			throws EtResourceNotFoundException {
 		try {
-			Category category = categoryRepository.findByCategoryIdAndUserId(categoryId, userId);
+			Category category = categoryRepository.findByIdAndUserId(categoryId, userId);
 			categoryRepository.delete(category);
 		} catch (Exception e) {
 			throw new EtResourceNotFoundException("Resource not found");

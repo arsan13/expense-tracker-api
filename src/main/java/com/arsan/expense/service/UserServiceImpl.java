@@ -66,4 +66,13 @@ public class UserServiceImpl implements UserService {
 		return userRepository.save(user);
 	}
 
+	@Override
+	public User getUserById(Integer id) throws EtAuthException {
+		try {
+			return userRepository.findById(id).orElseThrow(null);
+		} catch (Exception e) {
+			throw new EtAuthException("User doesn't exist");
+		}
+	}
+
 }
