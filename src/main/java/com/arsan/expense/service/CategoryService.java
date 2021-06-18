@@ -8,7 +8,7 @@ import com.arsan.expense.exception.EtResourceNotFoundException;
 
 public interface CategoryService {
 
-	public List<Category> fetchCategoriesOfUser(Integer userId) throws EtResourceNotFoundException;
+	public List<Category> fetchCategoriesOfUser(Integer userId);
 	
 	public Category fetchCategoryById(Integer categoryId, Integer userId) throws EtResourceNotFoundException;
 	

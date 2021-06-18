@@ -1,5 +1,8 @@
 package com.arsan.expense.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -7,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,9 +28,12 @@ public class Category {
 	private Double totalExpense;
 	
 	@JsonIgnore
-	@JoinColumn(name = "user_id")
+	@JoinColumn()
 	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
+	
+	@OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
+	private List<Transaction> transactions;
 	
 	public Category() {
 	}
@@ -44,19 +51,6 @@ public class Category {
 		this.title = title;
 		this.description = description;
 		this.totalExpense = totalExpense;
-	}
-	
-	public Category(Integer id, String title, String description, User user) {
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.user = user;
-	}
-
-	public Category(String title, String description, User user) {
-		this.title = title;
-		this.description = description;
-		this.user = user;
 	}
 	
 	public Category(String title, String description) {

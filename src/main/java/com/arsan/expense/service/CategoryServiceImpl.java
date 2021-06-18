@@ -17,12 +17,8 @@ public class CategoryServiceImpl implements CategoryService {
 	CategoryRepository categoryRepository;
 	
 	@Override
-	public List<Category> fetchCategoriesOfUser(Integer userId) throws EtResourceNotFoundException {
-		try {
-			return categoryRepository.findByUserId(userId);
-		} catch (Exception e) {
-			throw new EtResourceNotFoundException("Resource not found");
-		}
+	public List<Category> fetchCategoriesOfUser(Integer userId){
+		return categoryRepository.findByUserId(userId);
 	}
 
 	@Override

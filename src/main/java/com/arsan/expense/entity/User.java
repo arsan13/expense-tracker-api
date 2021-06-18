@@ -24,7 +24,10 @@ public class User {
 	private String password;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-	private List<Category> category;
+	private List<Category> categories;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<Transaction> transactions;
 	
 	public User() {
 	}
