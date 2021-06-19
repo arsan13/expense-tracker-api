@@ -23,10 +23,7 @@ public class Category {
 	private Integer id;
 	private String title;
 	private String description;
-	
-	@Transient
-	private Double totalExpense;
-	
+		
 	@JsonIgnore
 	@JoinColumn()
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -38,19 +35,17 @@ public class Category {
 	public Category() {
 	}
 
-	public Category(Integer id, String title, String description, Double totalExpense, User user) {
+	public Category(Integer id, String title, String description, User user) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.totalExpense = totalExpense;
 		this.user = user;
 	}
 	
-	public Category(Integer id, String title, String description, Double totalExpense) {
+	public Category(Integer id, String title, String description) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.totalExpense = totalExpense;
 	}
 	
 	public Category(String title, String description) {
@@ -80,14 +75,6 @@ public class Category {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Double getTotalExpense() {
-		return totalExpense;
-	}
-
-	public void setTotalExpense(Double totalExpense) {
-		this.totalExpense = totalExpense;
 	}
 
 	public User getUser() {
