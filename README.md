@@ -3,6 +3,8 @@
 
 A simple REST API created using Spring Boot and MySql.
 
+> Append the [given](https://github.com/arsan13/expense-tracker-api#explore-rest-apis) endpoints to https://my-expense-diary.herokuapp.com/ to explore the app without running locally.
+
 ## Run Locally
 
 Clone the project
@@ -55,8 +57,42 @@ The app will start running at http://localhost:8080
 | PUT | api/categories/{cid}/transactions/{tid} | Update an existing transaction | Updated JSON object |
 | DELETE | api/categories/{cid}/transactions/{tid} | Delete a transaction | Success message |
 
-
-
 > **_NOTE:_**  
-The endpoints of "Categories" and "Transactions" is only accessible to authenticated users. Use the generated token as the value of the Bearer in the Authorization header as follows:  *"Authorization: Bearer Token_id"*
+The endpoints of "Categories" and "Transactions" are restricted, only authenticated users can access it. To prove authentication, use the token which is generated after logging-in as the value of the Bearer in the Authorization header as follows:  
+**"Authorization: Bearer Token_id"**
 
+## Sample Request Body
+
+### User - Register
+```bash
+  {
+    "firstName": "Thomas",
+    "lastName": "Shelby",
+    "email": "shelby@gmail.com",
+    "password": "test123"
+  }
+```
+### User - Login
+```bash
+  {
+    "email": "shelby@gmail.com",
+    "password": "test123"
+  }
+```
+
+### Categories
+```bash
+  {
+    "title": "Shopping",
+    "description": "All shopping expenses in xyz mall"
+  }
+```
+
+### Transactions
+```bash
+  {
+    "amount": 4000,
+    "note": "Spent higher than last time",
+    "transactionDate" : "2021-19-09"
+  }
+```
