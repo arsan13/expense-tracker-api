@@ -19,6 +19,20 @@ Go to the project directory
   cd expense-tracker-api
 ```
 
+Create a database
+
+```bash
+  CREATE DATABASE database_name
+```
+
+Configure database properties in "application.properties" file as per your need
+
+```bash
+  spring.datasource.url=jdbc:mysql://localhost:3306/expense_tracker
+  spring.datasource.username=root
+  spring.datasource.password=
+```
+
 Build and Run the app
 
 ```bash
@@ -58,7 +72,7 @@ The app will start running at http://localhost:8080
 | DELETE | api/categories/{cid}/transactions/{tid} | Delete a transaction | Success message |
 
 > **_NOTE:_**  
-The endpoints of "Categories" and "Transactions" are restricted, only authenticated users can access it. To prove authentication, use the token which is generated after logging-in as the value of the Bearer in the Authorization header as follows:  
+The endpoints of "Categories" and "Transactions" are restricted. To access those endpoints, use the token which is generated after logging-in as the value of the Bearer in the Authorization header as follows:  
 **"Authorization: Bearer Token_id"**
 
 ## Sample Request Body
