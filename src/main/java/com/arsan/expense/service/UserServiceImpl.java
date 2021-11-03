@@ -28,7 +28,8 @@ public class UserServiceImpl implements UserService {
 		
 		if(email == null || password == null)
 			throw new EtAuthException("Invalid credentials");
-				
+		
+		email = email.toLowerCase();
 		User user = userRepository.findByEmail(email);
 		
 		if(user == null)
@@ -51,12 +52,12 @@ public class UserServiceImpl implements UserService {
 		
 		// Validating email
 		Pattern pattern = Pattern.compile("^(.+)@(.+)$");
-		String email = user.getEmail().toLowerCase();
-		if(!pattern.matcher(email).matches()) 
+		user.setEmail(user.getEmail().toLowerCase());
+		if(!pattern.matcher(user.getEmail()).matches()) 
 			throw new EtAuthException("Invalid email format");
 		
 		// Check if if email is already in use
-		if(userRepository.findByEmail(email) != null)
+		if(userRepository.findByEmail(user.getEmail()) != null)
 			throw new EtAuthException("Email already in use");
 
 		// Encoding password
