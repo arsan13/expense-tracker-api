@@ -1,7 +1,5 @@
 package com.arsan.expense.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,10 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -22,11 +17,8 @@ public class Transaction {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Double amount;
-	private String note;
-	
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date transactionDate;
+	private String note; 
+	private Long transactionDate;
 	
 	@JsonIgnore
 	@JoinColumn()
@@ -41,14 +33,14 @@ public class Transaction {
 	public Transaction() {
 	}
 
-	public Transaction(Integer id, Double amount, String note, Date transactionDate) {
-		this.id = id;	
+	public Transaction(Integer id, Double amount, String note, Long transactionDate) {
+		this.id = id;
 		this.amount = amount;
 		this.note = note;
 		this.transactionDate = transactionDate;
 	}
 	
-	public Transaction(Double amount, String note, Date transactionDate) {
+	public Transaction(Double amount, String note, Long transactionDate) {
 		this.amount = amount;
 		this.note = note;
 		this.transactionDate = transactionDate;
@@ -78,11 +70,11 @@ public class Transaction {
 		this.note = note;
 	}
 
-	public Date getTransactionDate() {
+	public Long getTransactionDate() {
 		return transactionDate;
 	}
 
-	public void setTransactionDate(Date transactionDate) {
+	public void setTransactionDate(Long transactionDate) {
 		this.transactionDate = transactionDate;
 	}
 	
