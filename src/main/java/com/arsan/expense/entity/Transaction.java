@@ -19,6 +19,7 @@ public class Transaction {
 	private Double amount;
 	private String note; 
 	private Long transactionDate;
+	private boolean remind;
 	
 	@JsonIgnore
 	@JoinColumn()
@@ -33,17 +34,19 @@ public class Transaction {
 	public Transaction() {
 	}
 
-	public Transaction(Integer id, Double amount, String note, Long transactionDate) {
+	public Transaction(Integer id, Double amount, String note, Long transactionDate, boolean remind) {
 		this.id = id;
 		this.amount = amount;
 		this.note = note;
 		this.transactionDate = transactionDate;
+		this.remind = remind;
 	}
 	
-	public Transaction(Double amount, String note, Long transactionDate) {
+	public Transaction(Double amount, String note, Long transactionDate, boolean remind) {
 		this.amount = amount;
 		this.note = note;
 		this.transactionDate = transactionDate;
+		this.remind = remind;
 	}
 
 	public Integer getId() {
@@ -78,6 +81,14 @@ public class Transaction {
 		this.transactionDate = transactionDate;
 	}
 	
+	public boolean isRemind() {
+		return remind;
+	}
+
+	public void setRemind(boolean remind) {
+		this.remind = remind;
+	}
+
 	public User getUser() {
 		return user;
 	}
