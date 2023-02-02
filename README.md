@@ -3,8 +3,6 @@
 
 A simple REST API created using Spring Boot and MySql.
 
-> Append the [given](https://github.com/arsan13/expense-tracker-api#explore-rest-apis) endpoints to https://my-expense-diary.herokuapp.com/ to explore the app without running locally.
-
 ## Run Locally
 
 Clone the project
