@@ -1,5 +1,5 @@
 
-# Expense Tracker
+# Expense Tracker API
 
 A simple REST API created using Spring Boot and MySql.
 
