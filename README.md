@@ -41,8 +41,8 @@ The app will start running at http://localhost:8080
 
 
 ## Swagger - API Documentation
-- [UI format](https://my-expense-diary.herokuapp.com/swagger-ui.html) 
-- [JSON format](https://my-expense-diary.herokuapp.com/v2/api-docs)
+- [UI format](https://expense-tracker-api-fm78.onrender.com/swagger-ui.html) 
+- [JSON format](https://expense-tracker-api-fm78.onrender.com/v2/api-docs)
 
 Cilck [here](https://swagger.io/) to know more about Swagger
 
